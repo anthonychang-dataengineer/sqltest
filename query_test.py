@@ -7,7 +7,16 @@ df = pd.read_csv(r'c:\Users\17322\Downloads\sqltest\circuits.csv')
 df.to_sql('circuits', conn, if_exists='replace', index=False) 
 
 cursor = conn.cursor() 
-cursor.execute("SELECT * FROM circuits LIMIT 11;") 
+
+country = input("Enter a country ")
+
+query = f"""
+SELECT *
+FROM circuits
+WHERE country = '{country}'
+LIMIT 10;
+"""
+cursor.execute(query) 
 print(cursor.fetchall()) 
 
 conn.close()
