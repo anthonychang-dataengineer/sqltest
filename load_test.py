@@ -8,6 +8,5 @@ df = pd.read_csv('circuits.csv')
 df.to_sql('circuits', conn, if_exists='replace', index=False) 
 
 print("Data loaded into SQLLite!") 
-#test
 
 conn.close()
