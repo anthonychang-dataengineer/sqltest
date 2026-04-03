@@ -3,20 +3,21 @@ import pandas as pd
 
 conn = sqlite3.connect('my_database.db') 
 
-df = pd.read_csv(r'c:\Users\17322\Downloads\sqltest\circuits.csv') 
-df.to_sql('circuits', conn, if_exists='replace', index=False) 
-
 cursor = conn.cursor() 
 
-country = input("Enter a country ")
 
 query = f"""
-SELECT *
+SELECT country, COUNT(*) AS country_count
 FROM circuits
-WHERE country = '{country}'
-LIMIT 10;
+GROUP BY country
+ORDER BY country_count DESC;
 """
+#executes the action, in this case, the query
 cursor.execute(query) 
-print(cursor.fetchall()) 
+#takes what the previous action did and allows you to fetch the results
+results = cursor.fetchall()
+
+for row in results:
+    print(row)
 
 conn.close()
