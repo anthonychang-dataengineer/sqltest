@@ -1,5 +1,15 @@
 import sqlite3 
 import pandas as pd 
+import logging
+
+#NEW: setup logging
+logging.basicConfig(
+    filename='query_script.log',
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s'
+)
+
+logging.info("Starting load script")
 
 conn = sqlite3.connect('my_database.db') 
 
